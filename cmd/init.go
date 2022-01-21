@@ -15,7 +15,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var hotel models.Hotel
+var hotel models.HotelIn
 
 // initCmd represents the init command
 var initCmd = &cobra.Command{
@@ -34,27 +34,28 @@ to quickly create a Cobra application.`,
 
 func init() {
 	hotelCmd.AddCommand(initCmd)
-	hotelCmd.LocalFlags().StringVar(&hotel.Name, "name", "", "Set hotel name")
-	hotelCmd.LocalFlags().IntVar(&hotel.TotalRooms, "rooms", 0, "Rooms in the hotel")
-	hotelCmd.LocalFlags().IntVar(&hotel.CostPerDay, "cost", 0, "cost per day of hotel room")
-	hotelCmd.MarkFlagRequired("name")
-	hotelCmd.MarkFlagRequired("rooms")
-	hotelCmd.MarkFlagRequired("cost")
+	initCmd.Flags().StringVar(&hotel.Name, "name", "", "Set hotel name")
+	initCmd.Flags().IntVar(&hotel.TotalRooms, "rooms", 0, "Rooms in the hotel")
+	initCmd.Flags().IntVar(&hotel.CostPerDay, "cost", 0, "cost per day of hotel room")
+	initCmd.MarkFlagRequired("name")
+	initCmd.MarkFlagRequired("rooms")
+	initCmd.MarkFlagRequired("cost")
 }
 
 func initHotel()  {
-	body := makeCreateRequest()
-	log.Println("response:", string(body))
-}
-
-func makeCreateRequest() []byte {
 	url := "http://localhost:4000/hotel"
 	jsonStr, err := json.Marshal(hotel)
 	if err != nil {
 		log.Fatal(err)
 	}
+	body := makeCreateRequest(url, jsonStr)
+	log.Println("response:", string(body))
+}
 
-	req, err := http.NewRequest(http.MethodPost, url, bytes.NewBuffer(jsonStr))
+func makeCreateRequest(url string, requestBody []byte) []byte {
+	
+
+	req, err := http.NewRequest(http.MethodPost, url, bytes.NewBuffer(requestBody))
 	if err != nil {
 		log.Fatal(err)
 	}
