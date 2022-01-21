@@ -14,9 +14,9 @@ import (
 	"github.com/spf13/cobra"
 )
 
-// showCmd represents the show command
-var showCmd = &cobra.Command{
-	Use:   "show",
+// allCmd represents the all command
+var allCmd = &cobra.Command{
+	Use:   "all",
 	Short: "A brief description of your command",
 	Long: `A longer description that spans multiple lines and likely contains examples
 and usage of using your command. For example:
@@ -25,30 +25,29 @@ Cobra is a CLI library for Go that empowers applications.
 This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		showHotelStats()
+		showAllGuests()
 	},
 }
 
 func init() {
-	hotelCmd.AddCommand(showCmd)
+	guestCmd.AddCommand(allCmd)
 }
 
-func showHotelStats()  {
-	url := "http://localhost:4000/hotel"
-	responseBytes := getHotelData(url)
-	hotel := models.Hotel{}
-	if err := json.Unmarshal(responseBytes, &hotel); err != nil {
+func showAllGuests() {
+	url := "http://localhost:4000/guests"
+	responseBytes := getAllGuests(url)
+	var guests []models.Guest
+	err := json.Unmarshal(responseBytes, &guests)
+	if err != nil {
 		log.Fatal(err)
 	}
-	log.Printf("%+v\n", hotel)
+	for _, guest := range guests {
+		log.Printf("%+v\n", guest)
+	}
 }
 
-func getHotelData(url string) []byte  {
-	req, err := http.NewRequest(
-		http.MethodGet,
-		url,
-		nil,
-	)
+func getAllGuests(url string) []byte  {
+	req, err := http.NewRequest(http.MethodGet, url, nil)
 	if err != nil {
 		log.Fatal(err)
 	}
