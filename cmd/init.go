@@ -34,15 +34,20 @@ to quickly create a Cobra application.`,
 
 func init() {
 	hotelCmd.AddCommand(initCmd)
-	hotelCmd.PersistentFlags().StringVar(&hotel.Name, "name", "", "Set hotel name")
-	hotelCmd.PersistentFlags().IntVar(&hotel.TotalRooms, "rooms", 0, "Rooms in the hotel")
-	hotelCmd.PersistentFlags().IntVar(&hotel.CostPerDay, "cost", 0, "cost per day of hotel room")
+	hotelCmd.LocalFlags().StringVar(&hotel.Name, "name", "", "Set hotel name")
+	hotelCmd.LocalFlags().IntVar(&hotel.TotalRooms, "rooms", 0, "Rooms in the hotel")
+	hotelCmd.LocalFlags().IntVar(&hotel.CostPerDay, "cost", 0, "cost per day of hotel room")
 	hotelCmd.MarkFlagRequired("name")
 	hotelCmd.MarkFlagRequired("rooms")
 	hotelCmd.MarkFlagRequired("cost")
 }
 
 func initHotel()  {
+	body := makeCreateRequest()
+	log.Println("response:", string(body))
+}
+
+func makeCreateRequest() []byte {
 	url := "http://localhost:4000/hotel"
 	jsonStr, err := json.Marshal(hotel)
 	if err != nil {
@@ -64,5 +69,5 @@ func initHotel()  {
 	if err != nil {
 		log.Fatal(err)
 	}
-	log.Println("response:", string(body))
+	return body
 }
