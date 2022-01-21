@@ -35,12 +35,12 @@ var guest models.GuestIn
 
 func init() {
 	guestCmd.AddCommand(createCmd)
-	guestCmd.Flags().StringVar(&guest.Name, "name", "", "specify the guest name.")
-	guestCmd.Flags().StringVar(&guest.CheckInDate, "check-in", "", "specify the check in date")
-	guestCmd.Flags().StringVar(&guest.CheckInDate, "check-out", "", "specify the check out date")
-	guestCmd.MarkFlagRequired("name")
-	guestCmd.MarkFlagRequired("check-in")
-	guestCmd.MarkFlagRequired("check-out")
+	createCmd.Flags().StringVar(&guest.Name, "name", "", "specify the guest name.")
+	createCmd.Flags().StringVar(&guest.CheckInDate, "check-in", "", "specify the check in date.")
+	createCmd.Flags().StringVar(&guest.CheckInDate, "check-out", "", "specify the check out date.")
+	createCmd.MarkFlagRequired("name")
+	createCmd.MarkFlagRequired("check-in")
+	createCmd.MarkFlagRequired("check-out")
 }
 
 func createGuest()  {

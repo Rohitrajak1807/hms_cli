@@ -6,6 +6,9 @@ package cmd
 
 import (
 	"fmt"
+	"io/ioutil"
+	"log"
+	"net/http"
 
 	"github.com/spf13/cobra"
 )
@@ -21,20 +24,39 @@ Cobra is a CLI library for Go that empowers applications.
 This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("delete called")
+		deleteGuest()
 	},
 }
 
+var toBeDeleted int
+
 func init() {
 	guestCmd.AddCommand(deleteCmd)
+	deleteCmd.Flags().IntVar(&toBeDeleted, "id", -1, "specifies the id of the guest to be deleted.")
+	deleteCmd.MarkFlagRequired("id")
+}
 
-	// Here you will define your flags and configuration settings.
+func deleteGuest()  {
+	url := fmt.Sprintf("http://localhost:4000/guest/%d", toBeDeleted)
+	body := requestDeleteGuest(url)
+	log.Println(string(body))
 
-	// Cobra supports Persistent Flags which will work for this command
-	// and all subcommands, e.g.:
-	// deleteCmd.PersistentFlags().String("foo", "", "A help for foo")
+}
 
-	// Cobra supports local flags which will only run when this command
-	// is called directly, e.g.:
-	// deleteCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+func requestDeleteGuest(url string) []byte {
+	req, err := http.NewRequest(http.MethodDelete, url, nil)
+	if err != nil {
+		log.Fatal(err)
+	}
+	response, err := http.DefaultClient.Do(req)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer response.Body.Close()
+	log.Println("StatusCode:", response.StatusCode)
+	body, err := ioutil.ReadAll(response.Body)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return body
 }

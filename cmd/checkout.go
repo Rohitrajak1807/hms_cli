@@ -5,9 +5,12 @@ Copyright © 2022 NAME HERE <EMAIL ADDRESS>
 package cmd
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"log"
+	"net/http"
 	"time"
 
 	"github.com/spf13/cobra"
@@ -24,7 +27,7 @@ Cobra is a CLI library for Go that empowers applications.
 This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("checkout called")
+		changeCheckOutDate()
 	},
 }
 
@@ -51,9 +54,24 @@ func changeCheckOutDate()  {
 	if err != nil {
 		log.Fatal(err)
 	}
-	requestCheckOutChange(url, jsonStr)
+	response := requestCheckOutChange(url, jsonStr)
+	log.Println(string(response))
 }
 
-func requestCheckOutChange(url string, requestBody []byte) {
-	req, err := 
+func requestCheckOutChange(url string, requestBody []byte) []byte {
+	req, err := http.NewRequest(http.MethodPut, url, bytes.NewBuffer(requestBody))
+	if err != nil {
+		log.Fatal(err)
+	}
+	response, err := http.DefaultClient.Do(req)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer response.Body.Close()
+	log.Println("StatusCode:", response.StatusCode)
+	body, err := ioutil.ReadAll(response.Body)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return body
 }
