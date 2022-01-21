@@ -37,7 +37,7 @@ func init() {
 	guestCmd.AddCommand(createCmd)
 	createCmd.Flags().StringVar(&guest.Name, "name", "", "specify the guest name.")
 	createCmd.Flags().StringVar(&guest.CheckInDate, "check-in", "", "specify the check in date.")
-	createCmd.Flags().StringVar(&guest.CheckInDate, "check-out", "", "specify the check out date.")
+	createCmd.Flags().StringVar(&guest.CheckOutDate, "check-out", "", "specify the check out date.")
 	createCmd.MarkFlagRequired("name")
 	createCmd.MarkFlagRequired("check-in")
 	createCmd.MarkFlagRequired("check-out")
