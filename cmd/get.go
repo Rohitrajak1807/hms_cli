@@ -19,13 +19,8 @@ import (
 // getCmd represents the get command
 var getCmd = &cobra.Command{
 	Use:   "get",
-	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
-
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+	Short: "hms_cli guest get",
+	Long:  `Get details of a particluar guest by adding flag --id=`,
 	Run: func(cmd *cobra.Command, args []string) {
 		getAGuest()
 	},
@@ -64,6 +59,6 @@ func getGuestData(url string) []byte {
 	if err != nil {
 		log.Fatal(err)
 	}
-	
+
 	return responseBytes
 }
