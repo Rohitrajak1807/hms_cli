@@ -12,6 +12,7 @@ import (
 	"log"
 	"net/http"
 
+	"github.com/Rohitrajak1807/hms_cli/apiroutes"
 	"github.com/Rohitrajak1807/hms_cli/models"
 	"github.com/spf13/cobra"
 )
@@ -47,7 +48,7 @@ func init() {
 }
 
 func initHotel() {
-	url := "http://localhost:4000/hotel"
+	url := apiroutes.HotelInitRoute
 	jsonStr, err := json.Marshal(hotel)
 	if err != nil {
 		log.Fatal(err)

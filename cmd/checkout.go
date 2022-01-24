@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/Rohitrajak1807/hms_cli/apiroutes"
 	"github.com/spf13/cobra"
 )
 
@@ -46,7 +47,7 @@ func init() {
 }
 
 func changeCheckOutDate() {
-	url := fmt.Sprintf("http://localhost:4000/guest/%d", guestId)
+	url := fmt.Sprintf("%s/%d", apiroutes.GuestCheckoutRoute, guestId)
 	_, err := time.Parse("2006-01-02", newCheckOut)
 	if err != nil {
 		log.Fatal(err)

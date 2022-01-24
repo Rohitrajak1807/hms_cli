@@ -13,6 +13,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/Rohitrajak1807/hms_cli/apiroutes"
 	"github.com/Rohitrajak1807/hms_cli/models"
 	"github.com/spf13/cobra"
 )
@@ -49,7 +50,7 @@ func init() {
 }
 
 func createGuest() {
-	url := "http://localhost:4000/guest"
+	url := apiroutes.GuestCreateRoute
 	_, checkInErr := time.Parse("2006-01-02", guest.CheckInDate)
 	if checkInErr != nil {
 		log.Fatal(checkInErr)

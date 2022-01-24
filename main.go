@@ -4,7 +4,9 @@ Copyright © 2022 NAME HERE <EMAIL ADDRESS>
 */
 package main
 
-import "github.com/Rohitrajak1807/hms_cli/cmd"
+import (
+	"github.com/Rohitrajak1807/hms_cli/cmd"
+)
 
 func main() {
 	cmd.Execute()

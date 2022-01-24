@@ -12,6 +12,7 @@ import (
 	"net/http"
 
 	"github.com/Rohitrajak1807/hms_cli/models"
+	"github.com/Rohitrajak1807/hms_cli/apiroutes"
 	"github.com/spf13/cobra"
 )
 
@@ -30,7 +31,7 @@ func init() {
 }
 
 func showAllGuests() {
-	url := "http://localhost:4000/guests"
+	url := apiroutes.GuestAllRoute
 	responseBytes := getAllGuests(url)
 	var guests []models.Guest
 	err := json.Unmarshal(responseBytes, &guests)

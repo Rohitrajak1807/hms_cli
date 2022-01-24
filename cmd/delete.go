@@ -11,6 +11,7 @@ import (
 	"log"
 	"net/http"
 
+	"github.com/Rohitrajak1807/hms_cli/apiroutes"
 	"github.com/spf13/cobra"
 )
 
@@ -39,7 +40,7 @@ func init() {
 }
 
 func deleteGuest() {
-	url := fmt.Sprintf("http://localhost:4000/guest/%d", toBeDeleted)
+	url := fmt.Sprintf("%s/%d", apiroutes.GuestDeleteRoute,toBeDeleted)
 	body := requestDeleteGuest(url)
 	log.Println(string(body))
 

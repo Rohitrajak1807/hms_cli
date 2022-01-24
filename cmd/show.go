@@ -12,6 +12,7 @@ import (
 	"log"
 	"net/http"
 
+	"github.com/Rohitrajak1807/hms_cli/apiroutes"
 	"github.com/Rohitrajak1807/hms_cli/models"
 	"github.com/spf13/cobra"
 )
@@ -31,7 +32,7 @@ func init() {
 }
 
 func showHotelStats() {
-	url := "http://localhost:4000/hotel"
+	url := apiroutes.HotelShowRoute
 	responseBytes := getHotelData(url)
 	hotel := models.Hotel{}
 	if err := json.Unmarshal(responseBytes, &hotel); err != nil {

@@ -12,6 +12,7 @@ import (
 	"log"
 	"net/http"
 
+	"github.com/Rohitrajak1807/hms_cli/apiroutes"
 	"github.com/Rohitrajak1807/hms_cli/models"
 	"github.com/spf13/cobra"
 )
@@ -41,7 +42,7 @@ func init() {
 }
 
 func getAGuest() {
-	url := fmt.Sprintf("http://localhost:4000/guest/%d", id)
+	url := fmt.Sprintf("%s/%d", apiroutes.GuestGetRoute,id)
 	body := getGuestData(url)
 	guest := models.Guest{}
 	if err := json.Unmarshal(body, &guest); err != nil {
