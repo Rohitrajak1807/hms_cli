@@ -30,8 +30,8 @@ var id int
 
 func init() {
 	guestCmd.AddCommand(getCmd)
-	guestCmd.LocalFlags().IntVar(&id, "id", -1, "accepts an integer id for the guest")
-	guestCmd.MarkFlagRequired("id")
+	getCmd.Flags().IntVar(&id, "id", -1, "accepts an integer id for the guest")
+	getCmd.MarkFlagRequired("id")
 }
 
 func getAGuest() {
