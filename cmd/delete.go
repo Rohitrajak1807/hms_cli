@@ -17,13 +17,8 @@ import (
 // deleteCmd represents the delete command
 var deleteCmd = &cobra.Command{
 	Use:   "delete",
-	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
-
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+	Short: "hms_cli guest delete",
+	Long:  `Delete a particular guest by adding flag --id=`,
 	Run: func(cmd *cobra.Command, args []string) {
 		deleteGuest()
 	},
@@ -37,7 +32,7 @@ func init() {
 	deleteCmd.MarkFlagRequired("id")
 }
 
-func deleteGuest()  {
+func deleteGuest() {
 	url := fmt.Sprintf("http://localhost:4000/guest/%d", toBeDeleted)
 	body := requestDeleteGuest(url)
 	log.Println(string(body))
