@@ -19,13 +19,8 @@ import (
 // showCmd represents the show command
 var showCmd = &cobra.Command{
 	Use:   "show",
-	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
-
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+	Short: "hms_cli hotel show",
+	Long:  `This command shows the stats of hotel like number of room occupied, name of the hotel etc.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		showHotelStats()
 	},
@@ -35,7 +30,7 @@ func init() {
 	hotelCmd.AddCommand(showCmd)
 }
 
-func showHotelStats()  {
+func showHotelStats() {
 	url := "http://localhost:4000/hotel"
 	responseBytes := getHotelData(url)
 	hotel := models.Hotel{}
@@ -45,7 +40,7 @@ func showHotelStats()  {
 	log.Printf("%+v\n", hotel)
 }
 
-func getHotelData(url string) []byte  {
+func getHotelData(url string) []byte {
 	req, err := http.NewRequest(
 		http.MethodGet,
 		url,
