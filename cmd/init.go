@@ -21,8 +21,16 @@ var hotel models.HotelIn
 // initCmd represents the init command
 var initCmd = &cobra.Command{
 	Use:   "init",
-	Short: "hms_cli hotel init",
-	Long:  `Initiatize a hotel with 0 occupants by adding flags --cost= --name="" --rooms=`,
+	Short: "Initialize the hotel with 0 occupants ",
+	Long: `This command helps in creating a hotel.
+	
+			Example: hms_cli hotel create --cost --name --rooms
+				
+				--cost		This flag represents the cost of a single room which can be changed by the user
+							according to this only, the total payment will be calculated
+				--name		Specify the name of the hotel by using this flag
+				--rooms		Specify how many rooms are available in the desired hotel.`,
+
 	Run: func(cmd *cobra.Command, args []string) {
 		initHotel()
 	},
