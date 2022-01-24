@@ -2,7 +2,6 @@
 Copyright © 2022 NAME HERE <EMAIL ADDRESS>
 Example: hms_cli hotel init --cost=1000 --name="Hotel 1" --rooms=5
 Init a hotel with 0 occupants
-
 */
 package cmd
 
@@ -22,13 +21,8 @@ var hotel models.HotelIn
 // initCmd represents the init command
 var initCmd = &cobra.Command{
 	Use:   "init",
-	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
-
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+	Short: "hms_cli hotel init",
+	Long:  `Initiatize a hotel with 0 occupants by adding flags --cost= --name="" --rooms=`,
 	Run: func(cmd *cobra.Command, args []string) {
 		initHotel()
 	},
@@ -44,7 +38,7 @@ func init() {
 	initCmd.MarkFlagRequired("cost")
 }
 
-func initHotel()  {
+func initHotel() {
 	url := "http://localhost:4000/hotel"
 	jsonStr, err := json.Marshal(hotel)
 	if err != nil {
@@ -55,7 +49,6 @@ func initHotel()  {
 }
 
 func makeCreateRequest(url string, requestBody []byte) []byte {
-	
 
 	req, err := http.NewRequest(http.MethodPost, url, bytes.NewBuffer(requestBody))
 	if err != nil {
