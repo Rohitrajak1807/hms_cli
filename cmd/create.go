@@ -27,8 +27,8 @@ var createCmd = &cobra.Command{
 			
 			Usage Example: hms_cli guest create --check-in --check-out --name
 			
-				--check-in		Enter the checkin date by using this flag in the command. The date should in the format YYYY/MM/DD.
-				--check-out		Enter the checkout date by using this flag in the command. The date should in the format YYYY/MM/DD
+				--check-in		Enter the checkin date by using this flag in the command. The date should in the format YYYY-MM-DD.
+				--check-out		Enter the checkout date by using this flag in the command. The date should in the format YYYY-MM-DD
 				--name			Enter the name of the guest by using this flag in command. Example: --name="Jacob"`,
 
 	Run: func(cmd *cobra.Command, args []string) {
