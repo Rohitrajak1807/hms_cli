@@ -1,6 +1,6 @@
 /*
 Copyright © 2022 NAME HERE <EMAIL ADDRESS>
-
+the hotel subcommand
 */
 package cmd
 

@@ -1,6 +1,7 @@
 /*
 Copyright © 2022 NAME HERE <EMAIL ADDRESS>
-
+Example: hms_cli guest get --id=1
+get a guest by id
 */
 package cmd
 
@@ -18,13 +19,14 @@ import (
 // getCmd represents the get command
 var getCmd = &cobra.Command{
 	Use:   "get",
-	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
-
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+	Short: "Get details of a particluar guest by providing the Guest ID.",
+	Long: `This command helps the user to get the details of a particular
+			guest by giving the ID as the argument.
+			
+			Example: hms_cli guest get --id
+			
+				--id: ID of that particular guest whose details needs to be fetched.`,
+	
 	Run: func(cmd *cobra.Command, args []string) {
 		getAGuest()
 	},
@@ -63,6 +65,6 @@ func getGuestData(url string) []byte {
 	if err != nil {
 		log.Fatal(err)
 	}
-	
+
 	return responseBytes
 }

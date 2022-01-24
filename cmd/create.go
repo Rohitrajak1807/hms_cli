@@ -1,6 +1,7 @@
 /*
 Copyright © 2022 NAME HERE <EMAIL ADDRESS>
-
+Example: hms_cli guest create --check-in="2022-01-21" --check-out="2022-01-26" --name="abhay"
+Creates a new guest
 */
 package cmd
 
@@ -19,13 +20,17 @@ import (
 // createCmd represents the create command
 var createCmd = &cobra.Command{
 	Use:   "create",
-	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
+	Short: "Create a guest in the hotel database by adding the required details.",
+	Long: `This command helps user to create a guest by adding details.
+			Note that the payment tab will update automatically depending on
+			the number of days the guest is staying in the hotel. 
+			
+			Usage Example: hms_cli guest create --check-in --check-out --name
+			
+				--check-in		Enter the checkin date by using this flag in the command. The date should in the format YYYY-MM-DD.
+				--check-out		Enter the checkout date by using this flag in the command. The date should in the format YYYY-MM-DD
+				--name			Enter the name of the guest by using this flag in command. Example: --name="Jacob"`,
 
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		createGuest()
 	},
@@ -43,7 +48,7 @@ func init() {
 	createCmd.MarkFlagRequired("check-out")
 }
 
-func createGuest()  {
+func createGuest() {
 	url := "http://localhost:4000/guest"
 	_, checkInErr := time.Parse("2006-01-02", guest.CheckInDate)
 	if checkInErr != nil {

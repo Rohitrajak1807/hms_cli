@@ -1,6 +1,7 @@
 /*
 Copyright © 2022 NAME HERE <EMAIL ADDRESS>
-
+Example: hms_cli guest all
+Show details of all guests
 */
 package cmd
 
@@ -17,13 +18,8 @@ import (
 // allCmd represents the all command
 var allCmd = &cobra.Command{
 	Use:   "all",
-	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
-
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+	Short: "Fetches the details of all guests residing in the hotel.",
+	Long:  `Fetches the details of all guests residing in the hotel.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		showAllGuests()
 	},
@@ -46,7 +42,7 @@ func showAllGuests() {
 	}
 }
 
-func getAllGuests(url string) []byte  {
+func getAllGuests(url string) []byte {
 	req, err := http.NewRequest(http.MethodGet, url, nil)
 	if err != nil {
 		log.Fatal(err)

@@ -1,6 +1,7 @@
 /*
 Copyright © 2022 NAME HERE <EMAIL ADDRESS>
-
+Example: hms_cli guest checkout --date="2022-01-31" --id=16
+Edit checkout date for a guest
 */
 package cmd
 
@@ -19,13 +20,15 @@ import (
 // checkoutCmd represents the checkout command
 var checkoutCmd = &cobra.Command{
 	Use:   "checkout",
-	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
-
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+	Short: "This command enables the guest to update the checkout date.",
+	Long: `Note that the total payment will be updated automatically depending on the checkout date.
+			If the new checkout date is before the old checkout date, then payment amount will decrease
+			and if it is after checkout date, amount will increase.
+			
+			Update Checkout date by adding flag --date --id
+			
+				--date		provide checkout date here in this format: YYYY-MM-DD
+				--id		enter the id of that particular guest whose checkout date needs to be altered`,
 	Run: func(cmd *cobra.Command, args []string) {
 		changeCheckOutDate()
 	},
@@ -42,7 +45,7 @@ func init() {
 	checkoutCmd.MarkFlagRequired("date")
 }
 
-func changeCheckOutDate()  {
+func changeCheckOutDate() {
 	url := fmt.Sprintf("http://localhost:4000/guest/%d", guestId)
 	_, err := time.Parse("2006-01-02", newCheckOut)
 	if err != nil {
