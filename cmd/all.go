@@ -18,13 +18,8 @@ import (
 // allCmd represents the all command
 var allCmd = &cobra.Command{
 	Use:   "all",
-	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
-
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+	Short: "hms_cli guest all",
+	Long:  `Get details of all guest residing in the hotel`,
 	Run: func(cmd *cobra.Command, args []string) {
 		showAllGuests()
 	},
@@ -47,7 +42,7 @@ func showAllGuests() {
 	}
 }
 
-func getAllGuests(url string) []byte  {
+func getAllGuests(url string) []byte {
 	req, err := http.NewRequest(http.MethodGet, url, nil)
 	if err != nil {
 		log.Fatal(err)
