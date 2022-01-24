@@ -20,13 +20,8 @@ import (
 // checkoutCmd represents the checkout command
 var checkoutCmd = &cobra.Command{
 	Use:   "checkout",
-	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
-
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+	Short: "hms_cli guest checkout",
+	Long:  `Update Checkout date by adding flag --date="" --id=`,
 	Run: func(cmd *cobra.Command, args []string) {
 		changeCheckOutDate()
 	},
@@ -43,7 +38,7 @@ func init() {
 	checkoutCmd.MarkFlagRequired("date")
 }
 
-func changeCheckOutDate()  {
+func changeCheckOutDate() {
 	url := fmt.Sprintf("http://localhost:4000/guest/%d", guestId)
 	_, err := time.Parse("2006-01-02", newCheckOut)
 	if err != nil {
