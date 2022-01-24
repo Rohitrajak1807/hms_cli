@@ -1,6 +1,6 @@
 /*
 Copyright © 2022 NAME HERE <EMAIL ADDRESS>
-
+The guest subcommand 
 */
 package cmd
 

@@ -1,6 +1,8 @@
 /*
 Copyright © 2022 NAME HERE <EMAIL ADDRESS>
-
+Example: hms_cli hotel show
+Shows the stats of hotel
+Init a hotel with 0 occupants
 */
 package cmd
 

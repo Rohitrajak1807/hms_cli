@@ -1,6 +1,7 @@
 /*
 Copyright © 2022 NAME HERE <EMAIL ADDRESS>
-
+Example: hms_cli guest get --id=1
+get a guest by id
 */
 package cmd
 

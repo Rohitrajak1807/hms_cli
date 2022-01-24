@@ -1,6 +1,7 @@
 /*
 Copyright © 2022 NAME HERE <EMAIL ADDRESS>
-
+Example: hms_cli guest all
+Show details of all guests
 */
 package cmd
 

@@ -1,6 +1,7 @@
 /*
 Copyright © 2022 NAME HERE <EMAIL ADDRESS>
-
+Example: hms_cli guest delete --id=19
+delete a guest by id
 */
 package cmd
 

@@ -1,5 +1,7 @@
 /*
 Copyright © 2022 NAME HERE <EMAIL ADDRESS>
+Example: hms_cli hotel init --cost=1000 --name="Hotel 1" --rooms=5
+Init a hotel with 0 occupants
 
 */
 package cmd

@@ -1,6 +1,7 @@
 /*
 Copyright © 2022 NAME HERE <EMAIL ADDRESS>
-
+Example: hms_cli guest checkout --date="2022-01-31" --id=16
+Edit checkout date for a guest
 */
 package cmd
 

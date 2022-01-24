@@ -1,6 +1,7 @@
 /*
 Copyright © 2022 NAME HERE <EMAIL ADDRESS>
-
+Example: hms_cli guest create --check-in="2022-01-21" --check-out="2022-01-26" --name="abhay"
+Creates a new guest
 */
 package cmd
 
