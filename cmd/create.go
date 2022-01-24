@@ -20,8 +20,17 @@ import (
 // createCmd represents the create command
 var createCmd = &cobra.Command{
 	Use:   "create",
-	Short: "hms_cli guest create",
-	Long:  `Add guest data by adding flags --check-in="" --check-out="" --name=""`,
+	Short: "Create a guest in the hotel database by adding the required details.",
+	Long: `This command helps user to create a guest by adding details.
+			Note that the payment tab will update automatically depending on
+			the number of days the guest is staying in the hotel. 
+			
+			Usage Example: hms_cli guest create --check-in --check-out --name
+			
+				--check-in		Enter the checkin date by using this flag in the command. The date should in the format YYYY/MM/DD.
+				--check-out		Enter the checkout date by using this flag in the command. The date should in the format YYYY/MM/DD
+				--name			Enter the name of the guest by using this flag in command. Example: --name="Jacob"`,
+
 	Run: func(cmd *cobra.Command, args []string) {
 		createGuest()
 	},
