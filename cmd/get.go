@@ -19,8 +19,14 @@ import (
 // getCmd represents the get command
 var getCmd = &cobra.Command{
 	Use:   "get",
-	Short: "hms_cli guest get",
-	Long:  `Get details of a particluar guest by adding flag --id=`,
+	Short: "Get details of a particluar guest by providing the Guest ID.",
+	Long: `This command helps the user to get the details of a particular
+			guest by giving the ID as the argument.
+			
+			Example: hms_cli guest get --id
+			
+				--id: ID of that particular guest whose details needs to be fetched.`,
+	
 	Run: func(cmd *cobra.Command, args []string) {
 		getAGuest()
 	},

@@ -20,8 +20,15 @@ import (
 // checkoutCmd represents the checkout command
 var checkoutCmd = &cobra.Command{
 	Use:   "checkout",
-	Short: "hms_cli guest checkout",
-	Long:  `Update Checkout date by adding flag --date="" --id=`,
+	Short: "This command enables the guest to update the checkout date.",
+	Long: `Note that the total payment will be updated automatically depending on the checkout date.
+			If the new checkout date is before the old checkout date, then payment amount will decrease
+			and if it is after checkout date, amount will increase.
+			
+			Update Checkout date by adding flag --date --id
+			
+				--date		provide checkout date here in this format: YYYY-MM-DD
+				--id		enter the id of that particular guest whose checkout date needs to be altered`,
 	Run: func(cmd *cobra.Command, args []string) {
 		changeCheckOutDate()
 	},

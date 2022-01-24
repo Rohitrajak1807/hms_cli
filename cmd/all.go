@@ -19,7 +19,7 @@ import (
 var allCmd = &cobra.Command{
 	Use:   "all",
 	Short: "hms_cli guest all",
-	Long:  `Get details of all guest residing in the hotel`,
+	Long:  `Fetches the details of all guests residing in the hotel`,
 	Run: func(cmd *cobra.Command, args []string) {
 		showAllGuests()
 	},
