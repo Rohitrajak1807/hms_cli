@@ -25,7 +25,7 @@ var initCmd = &cobra.Command{
 	Short: "Initialize the hotel with 0 occupants ",
 	Long: `This command helps in creating a hotel.
 	
-			Example: hms_cli hotel create --cost --name --rooms
+			Example: hms_cli hotel init --cost --name --rooms
 				
 				--cost		This flag represents the cost of a single room which can be changed by the user
 							according to this only, the total payment will be calculated
