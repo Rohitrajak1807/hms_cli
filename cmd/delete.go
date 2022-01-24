@@ -17,8 +17,14 @@ import (
 // deleteCmd represents the delete command
 var deleteCmd = &cobra.Command{
 	Use:   "delete",
-	Short: "hms_cli guest delete",
-	Long:  `Delete a particular guest by adding flag --id=`,
+	Short: "Delete a particular guest by providing the guest ID.",
+	Long: `This command helps the user to delete a particular guest from the database
+			by giving the guest ID as the command argument.
+			
+			Example: hms_cli guest delete --id
+			
+				--id		Provide the ID of the guest here to delete it from the database. Eg: --id=12`,
+	
 	Run: func(cmd *cobra.Command, args []string) {
 		deleteGuest()
 	},
