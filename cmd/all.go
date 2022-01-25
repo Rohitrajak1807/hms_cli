@@ -58,5 +58,8 @@ func getAllGuests(url string) []byte {
 	if err != nil {
 		log.Fatal(err)
 	}
+	if response.StatusCode != http.StatusOK {
+		log.Fatal(response.Status)
+	}
 	return responseBytes
 }

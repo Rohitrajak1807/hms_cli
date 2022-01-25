@@ -69,10 +69,12 @@ func makeCreateRequest(url string, requestBody []byte) []byte {
 		log.Fatal(err)
 	}
 	defer res.Body.Close()
-	log.Println("StatusCode:", res.StatusCode)
 	body, err := ioutil.ReadAll(res.Body)
 	if err != nil {
 		log.Fatal(err)
+	}
+	if res.StatusCode != http.StatusCreated {
+		log.Fatal(res.Status)
 	}
 	return body
 }

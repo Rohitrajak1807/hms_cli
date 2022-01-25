@@ -56,10 +56,12 @@ func requestDeleteGuest(url string) []byte {
 		log.Fatal(err)
 	}
 	defer response.Body.Close()
-	log.Println("StatusCode:", response.StatusCode)
 	body, err := ioutil.ReadAll(response.Body)
 	if err != nil {
 		log.Fatal(err)
+	}
+	if response.StatusCode != http.StatusOK {
+		log.Fatal(response.Status)
 	}
 	return body
 }

@@ -83,5 +83,8 @@ func makeCreateGuestRequest(url string, requestBody []byte) []byte {
 	if err != nil {
 		log.Fatal(err)
 	}
+	if response.StatusCode != http.StatusCreated {
+		log.Fatal(response.Status)
+	}
 	return responseBytes
 }
